@@ -1,9 +1,10 @@
 .header-container {
-  height: 100vh;
+  min-height: calc(100vh - 150px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 1rem;
+  padding-bottom: 300px;
 }
 
 .header-background {
@@ -71,15 +72,17 @@
 
 .header-card-form {
   & button {
-    background: #5E72E4;
-    border-color: #5E72E4;
+    background: #5e72e4;
+    border-color: #5e72e4;
   }
 }
 
-footer .footer-policy, .footer-rights {
-  & a, small {
+footer .footer-policy,
+.footer-rights {
+  & a,
+  small {
     text-decoration: none;
-    color: #8392AB;
+    color: #8392ab;
   }
 }
 
