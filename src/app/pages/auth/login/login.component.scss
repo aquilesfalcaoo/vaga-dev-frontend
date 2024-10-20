@@ -1,0 +1,89 @@
+.header-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.header-background {
+  background: url("../../../../assets/images/bg-wallpaper.svg") no-repeat center
+    center / cover;
+  height: 50vh;
+  border-radius: 15px;
+  position: relative;
+}
+
+.navbar {
+  justify-content: space-evenly;
+}
+
+.navbar-title {
+  color: #ffff;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.navbar-menu {
+  padding-left: 0;
+  gap: 2rem;
+}
+
+.navbar-menu li {
+  list-style-type: none;
+  font-size: 14px;
+  & a {
+    text-decoration: none;
+    color: #ffff;
+  }
+}
+
+.header-title {
+  text-align: center;
+  margin-top: 2.5rem;
+  & h1 {
+    color: #ffff;
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+  & small {
+    color: #ffff;
+  }
+}
+
+.header-card {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  width: 100%;
+  top: 60%;
+  & .header-card-title {
+    & h3 {
+      color: #172b4d;
+      font-weight: 700;
+    }
+    & small {
+      color: #8392ab;
+    }
+  }
+}
+
+.header-card-form {
+  & button {
+    background: #5E72E4;
+    border-color: #5E72E4;
+  }
+}
+
+footer .footer-policy, .footer-rights {
+  & a, small {
+    text-decoration: none;
+    color: #8392AB;
+  }
+}
+
+::ng-deep p-card {
+  max-width: 400px;
+  width: 100%;
+}

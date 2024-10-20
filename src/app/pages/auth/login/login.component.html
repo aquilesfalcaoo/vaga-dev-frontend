@@ -1,1 +1,67 @@
-<p-menubar [model]="items" />
+<header class="header-container">
+  <div class="header-background">
+    <nav class="navbar">
+      <span class="navbar-title">Vaga Front-end AchieveMore</span>
+      <ul class="navbar-menu d-flex mb-0">
+        <li><a routerLink="/">Institucional</a></li>
+        <li><a routerLink="/">Produtos</a></li>
+        <li><a routerLink="/">Contato</a></li>
+      </ul>
+    </nav>
+    <div class="header-title">
+      <h1>Bem vindo(a)</h1>
+      <small>Use esse formulário para fazer login</small>
+    </div>
+    <div class="header-card">
+      <p-card>
+        <div class="header-card-title mb-3">
+          <h3>Área restrita</h3>
+          <small>Digite seu e-mail e senha para entrar</small>
+        </div>
+        <form
+          class="header-card-form"
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="d-flex flex-column gap-2">
+            <label for="email">E-mail</label>
+            <input
+              pInputText
+              id="email"
+              aria-describedby="email-help"
+              formControlName="email"
+              placeholder="Digite seu e-mail"
+            />
+          </div>
+          <div class="d-flex flex-column gap-2 mt-3">
+            <label for="password">Senha</label>
+            <input
+              pInputText
+              id="password"
+              type="password"
+              aria-describedby="password-help"
+              formControlName="password"
+              placeholder="Digite sua senha"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary mt-4 w-100"
+            [disabled]="form.invalid"
+          >
+            Entrar
+          </button>
+        </form>
+      </p-card>
+    </div>
+  </div>
+</header>
+<footer>
+  <div class="footer-policy d-flex justify-content-center gap-4">
+    <a routerLink="/">Política de Privacidade</a>
+    <a routerLink="/">Política de Segurança</a>
+  </div>
+  <div class="footer-rights d-flex justify-content-center my-4">
+    <small>© 2024 AchieveMore - Todos os direitos reservados.</small>
+  </div>
+</footer>

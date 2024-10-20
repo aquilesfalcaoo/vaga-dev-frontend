@@ -1,63 +1,57 @@
-import { Component, OnInit } from "@angular/core";
-import { MenuItem } from "primeng/api";
-import { MenubarModule } from "primeng/menubar";
+import { Component, DestroyRef, inject } from "@angular/core";
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { RouterLink } from "@angular/router";
+import { CardModule } from "primeng/card";
+import { InputTextModule } from "primeng/inputtext";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { AuthService } from "../../../core/services/auth.service";
 
 @Component({
   selector: "app-login",
   standalone: true,
-  imports: [MenubarModule],
+  imports: [
+    FormsModule,
+    RouterLink,
+    CardModule,
+    InputTextModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: "./login.component.html",
   styleUrl: "./login.component.scss",
 })
-export class LoginComponent implements OnInit {
-  items: MenuItem[] | undefined;
+export class LoginComponent {
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly authService = inject(AuthService);
+  private readonly destroyRef = inject(DestroyRef);
+  form: FormGroup = new FormGroup({});
+
+  constructor() {}
 
   ngOnInit() {
-    this.items = [
-      {
-        label: "Home",
-        icon: "pi pi-home",
-      },
-      {
-        label: "Features",
-        icon: "pi pi-star",
-      },
-      {
-        label: "Projects",
-        icon: "pi pi-search",
-        items: [
-          {
-            label: "Components",
-            icon: "pi pi-bolt",
-          },
-          {
-            label: "Blocks",
-            icon: "pi pi-server",
-          },
-          {
-            label: "UI Kit",
-            icon: "pi pi-pencil",
-          },
-          {
-            label: "Templates",
-            icon: "pi pi-palette",
-            items: [
-              {
-                label: "Apollo",
-                icon: "pi pi-palette",
-              },
-              {
-                label: "Ultima",
-                icon: "pi pi-palette",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        label: "Contact",
-        icon: "pi pi-envelope",
-      },
-    ];
+    this.buildForm();
+  }
+
+  buildForm() {
+    this.form = this.formBuilder.group({
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", Validators.required],
+    });
+  }
+
+  onSubmit() {
+    if (!this.form.valid) {
+      return;
+    }
+
+    this.authService
+      .login(this.form.value)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe();
   }
 }
